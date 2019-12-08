@@ -45,8 +45,14 @@
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
 (helm-mode 1)
 
-;; Auto close brackets to save time
+;; Closing brackets is a pain
 (electric-pair-mode 1)
+
+;; Spall checking is important
+(setenv "DICTIONARY" "en_GB")
+(when (executable-find "hunspell")
+  (setq-default ispell-program-name "hunspell")
+  (setq ispell-really-hunspell t))
 
 ;; PYTHON CONFIGURATION
 ;; --------------------------------------
@@ -63,6 +69,7 @@
 ;; enable autopep8 formatting on save
 (require 'py-autopep8)
 (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
