@@ -3,7 +3,7 @@
 (require 'package)
 
 (add-to-list 'package-archives
-       '("melpa" . "http://melpa.org/packages/") t)
+       '("melpa" . "https://melpa.org/packages/") t)
 
 (package-initialize)
 (when (not package-archive-contents)
@@ -18,7 +18,8 @@
     flycheck
     magit
     material-theme
-    py-autopep8))
+    py-autopep8
+    org-roam))
 
 (mapc #'(lambda (package)
     (unless (package-installed-p package)
@@ -54,6 +55,20 @@
   (setq-default ispell-program-name "hunspell")
   (setq ispell-really-hunspell t))
 
+;; Org Configuration
+;; --------------------------------------
+(setq org-roam-directory "somewhere")
+
+
+;; keys
+(global-set-key (kbd "C-c n r") #'org-roam-buffer-toggle-display)
+(global-set-key (kbd "C-c n i") #'org-roam-insert)
+(global-set-key (kbd "C-c n /") #'org-roam-find-file)
+(global-set-key (kbd "C-c n b") #'org-roam-switch-to-buffer)
+(global-set-key (kbd "C-c n d") #'org-roam-find-directory)
+
+
+
 ;; PYTHON CONFIGURATION
 ;; --------------------------------------
 
@@ -77,7 +92,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (conda py-autopep8 material-theme flycheck elpy ein magit better-defaults))))
+    (conda py-autopep8 material-theme org-roam flycheck elpy ein magit better-defaults))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
